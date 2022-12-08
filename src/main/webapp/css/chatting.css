@@ -1,0 +1,41 @@
+@charset "UTF-8";
+* {box-sizing: border-box; margin: 0; padding: 0;}
+    #head {
+      margin: 0 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .header span {
+      font-size: 24px;
+      border-bottom: 2px solid #000;
+    }
+    .chat-content {
+      width: 100vw; height: 80vh; 
+      overflow-y: scroll;
+      background: #c4e3fd;
+    }
+    .chat-content::-webkit-scrollbar {
+    /* 스크롤바 전체 */
+      width: 8px; height: 8px;
+      background-color: #dbdbdb;
+    }
+    .chat-content::-webkit-scrollbar-thumb {
+      /* 스크롤 막대 */
+      background-color: #464646;
+      /* width: 8px; */
+      border-radius: 10px;
+    }
+    .chatLine {margin-top: 10px; display: flex;}
+    .chat-box {
+      background: #fff; 
+      max-width: 250px;
+      padding: 5px; margin: 5px;
+    }
+    .chatMine { margin-left: auto; background: #f5f966;}
+    #chatInput { width: 80vw; outline: none; border: 1px solid #8e8e8e;}
+    #chatInput:focus { border: 2px solid #000;}
+    #Chatsend { 
+      width: 50px;
+      padding: 5px;
+      border: 1px solid #000;
+    }
