@@ -8,7 +8,7 @@
 <script src="./js/join.js" defer></script>
 </head>
 <body>
-	<form action="#" method="post" name="joinForm">
+	<form action="./userRegister" method="post" name="joinForm">
 		<p>아이디 : <input type="text" name="userID">
 			<input type="button" value="중복확인"></p>
 		<p>비밀번호 : <input type="password" name="userPassword"></p>
