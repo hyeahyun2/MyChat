@@ -10,7 +10,7 @@
 <body>
 	<form action="./userRegister" method="post" name="joinForm">
 		<p>아이디 : <input type="text" name="userID">
-			<input type="button" value="중복확인"></p>
+			<input type="button" value="중복확인" id="checkIDBtn"></p>
 		<p>비밀번호 : <input type="password" name="userPassword"></p>
 		<p>비밀번호 확인 : <input type="password" name="userPWCheck"></p>
 		<p>이름 : <input type="text" name="userName"></p>

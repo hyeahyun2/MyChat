@@ -1,6 +1,6 @@
 const form = document.joinForm;
 const submitBtn = form.submitBtn
-
+console.log(submitBtn);
 function insert(){ // 유효성 검사 밑 submit
   let id = form.userID.value;
   let pw = form.userPassword.value;
@@ -36,18 +36,18 @@ function insert(){ // 유효성 검사 밑 submit
   // 비밀번호 유효성 검사
   if(pw.length == 0){ // 미입력시
     alert("비밀번호를 입력해주세요.");
-    form.userPassword1.select();
+    form.userPassword.select();
     return;
   }
   else if(!regExpPasswd.test(pw)){
     alert("비밀번호는 숫자만을 이용해서 6자이상 12자 이하로 작성해주세요.");
-    form.userPassword1.select();
+    form.userPassword.select();
     return;
   }
   // 비밀번호 확인
   if(pwCheck != pw){
     alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
-    form.userPassword2.select();
+    form.userPWCheck.select();
     return;
   }
   // 이름 유효성 검사
@@ -68,3 +68,29 @@ function insert(){ // 유효성 검사 밑 submit
 
 // 가입하기 버튼 클릭 -> 가입 실행
 submitBtn.addEventListener("click", insert);
+
+// 아이디 중복검사
+const xhr = new XMLHttpRequest();
+const checkIDBtn = document.getElementById("checkIDBtn");
+
+
+const checkID = function(){
+	console.log("test");
+	let userIDVal = form.userID.value; // userID 값 가져오기
+	xhr.open("GET", "./UserRegisterCheckServlet", true);
+	//xhr.setRequestHeader(key, value); // header에 포함하고자 하는 key와 값
+	xhr.send("userID=", userIDVal);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState != XMLHttpRequest.DONE) return;
+		if(xhr.state == 200){ // 준완
+			let result = xhr.response;
+			if(result == 1){ // 가입 가능한 회원
+				alert("사용가능한 아이디입니다.");
+			}
+			else {
+				alert("사용할 수 없는 아이디입니다.");
+			}
+		}
+	}
+}
+checkIDBtn.addEventListener("click", checkID);
