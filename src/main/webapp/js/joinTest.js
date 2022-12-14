@@ -1,4 +1,7 @@
-const form = document.joinForm;
+/**
+ * 
+ */
+ const form = document.joinForm;
 const submitBtn = form.submitBtn
 console.log("test");
 function insert(){ // 유효성 검사 밑 submit
@@ -68,7 +71,7 @@ function insert(){ // 유효성 검사 밑 submit
 
 // 가입하기 버튼 클릭 -> 가입 실행
 submitBtn.addEventListener("click", insert);
-/*
+
 // 아이디 중복검사
 const xhr = new XMLHttpRequest();
 const checkIDBtn = document.getElementById("checkIDBtn");
@@ -77,9 +80,10 @@ const checkIDBtn = document.getElementById("checkIDBtn");
 const checkID = function(){
 	console.log("test");
 	let userIDVal = form.userID.value; // userID 값 가져오기
-	xhr.open("GET", "./UserRegisterCheckServlet", true);
+	xhr.open("POST", "./UserRegisterCheckServlet", true);
 	//xhr.setRequestHeader(key, value); // header에 포함하고자 하는 key와 값
-	xhr.send("userID=", userIDVal);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState != XMLHttpRequest.DONE) return;
 		if(xhr.state == 200){ // 준완
@@ -92,6 +96,7 @@ const checkID = function(){
 			}
 		}
 	}
+	xhr.send("userID=" + userIDVal);
 }
 checkIDBtn.addEventListener("click", checkID);
-*/
+
