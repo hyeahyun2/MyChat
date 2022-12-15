@@ -26,6 +26,41 @@ public class UserDAO {
 		}
 	}
 	
+	// 로그인
+	public int login(String userID, String userPassword) {
+		// return값  : 1 = 로그인 성공, 0 = 로그인 정보 일치x , -1 = 데이터베이스 오류
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from user where userID = ?";
+		
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) { // 아이디 일치할 경우
+				if(rs.getString("userPassword").equals(userPassword)) { // 비번 일치
+					return 1; // 로그인 성공
+				}
+				return 0; // 비번 틀림 ->  로그인 정보가 정확하지 않습니다.
+			}
+			else return 0; // 아이디 틀림 -> 로그인 정보가 정확하지 않습니다.
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally { // 리소스 닫아주기
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1; // 데이터베이스 오류 발생
+	}
+	
 	// 아이디 중복확인
 	public int registerCheck(String userID) {
 		Connection conn = null;

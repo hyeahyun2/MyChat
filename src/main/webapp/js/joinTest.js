@@ -1,9 +1,14 @@
-/**
- * 
- */
- const form = document.joinForm;
+const form = document.joinForm;
 const submitBtn = form.submitBtn
-console.log("test");
+let checkID_State = false;
+const idInputTag = form.userID;
+console.log(idInputTag);
+
+// 아이디 중복 검사 재체크 필요
+idInputTag.addEventListener("input", ()=>{
+	checkID_State = false;
+})
+
 function insert(){ // 유효성 검사 밑 submit
   let id = form.userID.value;
   let pw = form.userPassword.value;
@@ -19,6 +24,11 @@ function insert(){ // 유효성 검사 밑 submit
   // 이름 정규표현식
   let regExpName = /^[가-힣]{2,4}$/;
   
+  // 아이디 중복검사 체크
+  if(!checkID_State){
+	alert("아이디 중복검사를 진행한 후 가입 버튼을 눌러주세요.");
+	return;
+  }
   // 아이디 유효성 검사
   if(id.length == 0){ // 미입력시
     alert("아이디를 입력해주세요.");
@@ -64,7 +74,7 @@ function insert(){ // 유효성 검사 밑 submit
     form.userName.select();
     return;
   }
-
+  
   alert("회원가입에 성공했습니다!");
   form.submit();
 }
@@ -78,25 +88,28 @@ const checkIDBtn = document.getElementById("checkIDBtn");
 
 
 const checkID = function(){
-	console.log("test");
 	let userIDVal = form.userID.value; // userID 값 가져오기
+		console.log(userIDVal);
 	xhr.open("POST", "./UserRegisterCheckServlet", true);
-	//xhr.setRequestHeader(key, value); // header에 포함하고자 하는 key와 값
+	//xhr.setRequestHeader("인코딩?방식", ""); 
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState != XMLHttpRequest.DONE) return;
-		if(xhr.state == 200){ // 준완
+		console.log("test");
+		if(xhr.status == 200){ // 준완
 			let result = xhr.response;
+			console.log("result : " + result);
 			if(result == 1){ // 가입 가능한 회원
 				alert("사용가능한 아이디입니다.");
+				checkID_State = true;
 			}
 			else {
 				alert("사용할 수 없는 아이디입니다.");
 			}
 		}
 	}
-	xhr.send("userID=" + userIDVal);
-}
+	xhr.send("userID=" + userIDVal); // header에 포함하고자 하는 key와 값
+} 
 checkIDBtn.addEventListener("click", checkID);
 

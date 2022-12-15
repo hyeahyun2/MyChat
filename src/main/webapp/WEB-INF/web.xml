@@ -21,4 +21,14 @@
   	<servlet-name>UserRegisterServlet</servlet-name>
   	<url-pattern>/userRegister</url-pattern>
   </servlet-mapping>
+  <!-- 로그인 관련 -->
+  <servlet>
+  	<servlet-name>UserLoginServlet</servlet-name>
+  	<servlet-class>user.UserLoginServlet</servlet-class>
+  </servlet>
+  <!-- 실제로 사용자가 어떤 url을 거쳐서 이 서블릿에 접근할 수 있는지 -->
+  <servlet-mapping>
+  	<servlet-name>UserLoginServlet</servlet-name>
+  	<url-pattern>/userLogin</url-pattern>
+  </servlet-mapping>
 </web-app>

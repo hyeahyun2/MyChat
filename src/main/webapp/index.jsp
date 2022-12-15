@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
+<script src="./js/index.js?v=<%=System.currentTimeMillis()%>" defer></script>
 </head>
 <body>
 	<%
@@ -33,12 +34,7 @@
 	}
 	%>
 	<script>
-    	const aTag = document.querySelector(".chatBtn");
-
-	    aTag.addEventListener("click", (e)=>{
-	      e.preventDefault();
-	      window.open("./chatMain.jsp", "채팅", " width=400, height=500");
-	    })
+    	
   </script>
 </body>
 </html>

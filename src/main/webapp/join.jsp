@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<script src="./js/joinTest.js" defer></script>
+<script src="./js/joinTest.js?v=<%=System.currentTimeMillis()%>" defer></script>
 </head>
 <body>
 	<form action="./userRegister" method="post" name="joinForm">
