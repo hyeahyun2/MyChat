@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/UserLoginServlet")
 public class UserLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -24,6 +24,7 @@ public class UserLoginServlet extends HttpServlet {
 			response.sendRedirect("login.jsp");
 		}
 		// 비어있지 않은 경우 -> 로그인 시도
+		// return값  : 1 = 로그인 성공, 0 = 로그인 정보 일치x , -1 = 데이터베이스 오류
 		int result = new UserDAO().login(userID, userPassword);
 		if(result == 1) { // 로그인 성공
 			request.getSession().setAttribute("messageType", "성공 메세지");
