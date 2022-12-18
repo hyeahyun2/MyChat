@@ -27,6 +27,7 @@ public class UserLoginServlet extends HttpServlet {
 		// return값  : 1 = 로그인 성공, 0 = 로그인 정보 일치x , -1 = 데이터베이스 오류
 		int result = new UserDAO().login(userID, userPassword);
 		if(result == 1) { // 로그인 성공
+			request.getSession().setAttribute("userID", userID);
 			request.getSession().setAttribute("messageType", "성공 메세지");
 			request.getSession().setAttribute("messageContent", "로그인에 성공했습니다.");
 			response.sendRedirect("index.jsp");

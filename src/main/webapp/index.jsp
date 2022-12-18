@@ -28,7 +28,8 @@
 	%>
 	<ul>
 		<li><a href="./chatMain.jsp" class="chatBtn">채팅목록</a></li>
-		<li>로그아웃</li>
+		<li><a href="logoutAction.jsp">로그아웃</a></li>
+		<li><a href="chat_getToID.jsp">테스트링크</a></li>
 	</ul>
 	<%
 	}

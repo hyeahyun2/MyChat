@@ -3,25 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<%
+	String userID = null;
+	String toID = null;
+	if(session.getAttribute("userID") != null){
+		userID = (String)session.getAttribute("userID");
+	}
+	if(request.getParameter("toID") != null){
+		toID = (String)request.getParameter("toID");
+	}
+	%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>채팅</title>
 <link rel="stylesheet" href="./css/chatting.css">
-<script src="./js/chatting.js" defer></script>
+<script src="./js/chatting.js?v=<%=System.currentTimeMillis()%>" defer></script>
 </head>
 <body>
-<div id="head">
-	<h1 class="header"><span>유저1</span></h1>
-	<a href="./chatMain.jsp">뒤로가기</a>
-</div>
-<div class="chat-content">
-	<div class="chatLine">
-		<span class="chat-box">안녕?</span>
+	<span class="getInfo userID"><%= userID %></span>
+	<span class="getInfo toID"><%= toID %></span>
+	<div id="head">
+		<h1 class="header"><span><%= toID %></span></h1>
+		<a href="./chatMain.jsp">뒤로가기</a>
 	</div>
-	<div class="chatLine">
-		<span class="chat-box chatMine">안녕!</span>
+	<div class="chat-content">
+		<!-- 채팅 공간 -->
 	</div>
-</div>
-<input class="chat-box" id="chatInput">
-<button id="Chatsend">전송</button>
+	<input class="chat-box" id="chatInput">
+	<button id="Chatsend">전송</button>
 </body>
 </html>

@@ -17,7 +17,7 @@
 	// Statement : 실제로 어떤 sql문장을 db에 입력한 다음 -> 그 결과를 반환시켜주는 역할
 	Statement stmt = conn.createStatement();
 	// 쿼리문의 결과를 rset에 저장
-	ResultSet rset = stmt.executeQuery("select version();");
+	ResultSet rset = stmt.executeQuery("select version()");
 	// 만약 결과가 존재한다면
 	while(rset.next()){
 		out.println("MySQL Version: " + rset.getString("version()"));

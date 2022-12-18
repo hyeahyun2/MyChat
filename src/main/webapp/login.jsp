@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="./css/login.css?v=<%=System.currentTimeMillis()%>">
+<script src="./js/login.js?v=<%=System.currentTimeMillis()%>" defer></script>
 </head>
 <body>
 	<div id="bodyWrap">
 		<div id="contentWrap">
-			<h1>로그인</h1>
+			<h3><a href="./index.jsp">로그인</a></h3>
 			<form method="post" action="./userLogin" name="loginForm">
 				<p> 아이디 : <input type="text" name="userID">
 				<p> 비밀번호 : <input type="password" name="userPassword">
@@ -18,7 +19,7 @@
 			</form>
 		</div>
 	</div>
-	<%--
+	<%
 	// session값 검증하기 (UserRegisterServlet으로 부터 받은 값!!)
 	
 	String messageContent = null;
@@ -33,20 +34,23 @@
 	
 	// messageContent값이 존재하는 경우
 	if(messageContent != null) {
-	--%>
+	%>
 	<div id="messageWrap">
-		<button>닫기</button>
+		<button class="closeBtn">닫기</button>
 		<table>
 			<thead>
-				<tr><th>메세지</th></tr>
+				<tr><th><%= messageType %></th></tr>
 			</thead>
 			<tbody>
-				<tr><td>메세지 내용</td></tr>
+				<tr><td><%= messageContent %></td></tr>
 			</tbody>
 		</table>
 	</div>
-	<%--
+	<%
+		// message관련 session 속성값 없애주기
+		session.removeAttribute("messageContent");
+		session.removeAttribute("messageType");
 	}
-	--%>
+	%>
 </body>
 </html>
