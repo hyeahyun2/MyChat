@@ -30,9 +30,9 @@
 	    	</a>
 	    </li>
 	    <li class="chatUser">
-	    	<a href="./chatting.jsp">
+	    	<a href="./chatting.jsp?toID=test33">
 		        <div></div>
-		        <span>유저3</span>
+		        <span>test33</span>
 	    	</a>
 	    </li>
 	  </ul>

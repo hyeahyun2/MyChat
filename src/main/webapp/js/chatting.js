@@ -62,11 +62,23 @@ function chatListFunction(type){
 // 채팅 리스트 화면에 추가
 function addChat(chatName, chatContent, chatTime){
 	let classType = "";
-	console.log("chatName : " + chatName);
-	console.log("fromID : " + fromID);
+	// 날짜 , 시간 나눠주기
+	let timeArray = chatTime.split(' ');
+	timeArray = timeArray.map(element => element.trim());
+	let regDate = /^\d{4}-\d{1,2}-\d{1,2}$/;
+	let date = ""; // 날짜
+	let time = ""; // 시간
+	timeArray.forEach(element => {
+      if(regDate.test(element)) date += element;
+      else {
+        time += element + " ";
+      }
+    });
+    
 	if(chatName ==fromID) classType = "chatMine";
-	var template = `<div class="chatLine">
-		<span class="chat-box ${classType}">${chatContent}</span>
+	var template = `<div class="chatLine ${classType}">
+		<span class="chat-box">${chatContent}</span>
+		<span class="chat-time">${time}</span>
 		</div>`;
 	document.querySelector(".chat-content").insertAdjacentHTML("beforeend", template);
 }

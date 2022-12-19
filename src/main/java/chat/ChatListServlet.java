@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ChatListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("chatListServlet 실행");
+//		System.out.println("chatListServlet 실행");
 		// 기본 세팅
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
