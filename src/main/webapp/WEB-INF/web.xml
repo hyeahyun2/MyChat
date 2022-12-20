@@ -50,4 +50,13 @@
   	<servlet-name>ChatListServlet</servlet-name>
   	<url-pattern>/chatListServlet</url-pattern>
   </servlet-mapping>
+  <!-- ChatIDListServlet -->
+  <servlet>
+  	<servlet-name>ChatIDListServlet</servlet-name>
+  	<servlet-class>chat.ChatIDListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ChatIDListServlet</servlet-name>
+  	<url-pattern>/chatIDListServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

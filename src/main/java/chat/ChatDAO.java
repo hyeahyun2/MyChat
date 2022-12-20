@@ -157,4 +157,48 @@ public class ChatDAO {
 		}
 		return -1; // 데이터베이스 오류 발생 시 반환할 값
 	}
+	
+	// 로그인한 아이디와의 채팅 내역이 있는 아이디 목록 들고오기
+	public ArrayList<String> getChatIDList(String userID){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		// 리턴할 리스트 생성
+		ArrayList<String> idList = new ArrayList<String>();
+		
+		// userID에 따른 채팅 내역 있는 아이디 목록 불러오기
+		String sql = "select toID, fromID from chat "
+				+ "GROUP BY fromID, toID " 
+				+ "HAVING toID = ? OR fromID = ?";
+		
+		try{
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, userID);
+			rs = pstmt.executeQuery();
+			while(rs.next()){ // 값 있으면
+				// 중복 값 걸러내기
+				if(!idList.contains(rs.getString("toID"))) { // 포함하지 않으면
+					idList.add(rs.getString("toID")); // 리스트에 추가
+				}
+				if(!idList.contains(rs.getString("fromID"))) {
+					idList.add(rs.getString("fromID"));
+				}
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return idList;
+	}
 }

@@ -26,7 +26,8 @@
 	
 	// userID에 따른 toID 목록 불러오기
 	String sql = "select toID, fromID from chat "
-			+ "where (fromID = ? or toID = ?)";
+			+ "GROUP BY fromID, toID " 
+			+ "HAVING toID = ? OR fromID = ?";
 	try{
 		conn = ds.getConnection();
 		pstmt = conn.prepareStatement(sql);
@@ -35,9 +36,12 @@
 		rs = pstmt.executeQuery();
 		while(rs.next()){ // 값 있으면
 			// 중복 값 걸러내기
-			if(toIDList.contains(rs.getString("toID"))) continue;
-			toIDList.add(rs.getString("toID")); // 리스트에 추가
-			toIDList.add(rs.getString("fromID"));
+			if(!toIDList.contains(rs.getString("toID"))) { // 포함하지 않으면
+				toIDList.add(rs.getString("toID")); // 리스트에 추가
+			}
+			if(!toIDList.contains(rs.getString("fromID"))) {
+				toIDList.add(rs.getString("fromID"));
+			}
 		}
 	} catch(Exception e){
 		e.printStackTrace();
@@ -47,11 +51,11 @@
 		if(conn != null) conn.close();
 		if(initCtx != null) initCtx.close();
 	}
-	request.getSession().setAttribute("toIDList", toIDList);
 	
 	for(int i=0; i<toIDList.size(); i++){
 	out.print(toIDList.get(i) + " ");
 	}
+	
 	%>
 </body>
 </html>

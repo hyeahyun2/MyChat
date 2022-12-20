@@ -13,28 +13,13 @@
 <meta charset="UTF-8">
 <title>채팅방 목록</title>
 <link rel="stylesheet" href="./css/chatMain.css">
+<script src="./js/chatMain.js" defer></script>
 </head>
 <body>
+	<span class="getInfo userID"><%= userID %></span>
 	<h1 class="header"><span>채팅목록</span></h1>
 	<ul id="chatUserList">
-		<li class="chatUser">
-			<a href="./chatting.jsp?toID=test22">
-		        <div></div>
-		        <span>test22</span>
-	    	</a>
-	    </li>
-	    <li class="chatUser">
-	    	<a href="./chatting.jsp?toID=test11">
-		        <div></div>
-		        <span>test11</span>
-	    	</a>
-	    </li>
-	    <li class="chatUser">
-	    	<a href="./chatting.jsp?toID=test33">
-		        <div></div>
-		        <span>test33</span>
-	    	</a>
-	    </li>
-	  </ul>
+		<!-- 채팅 내역 있는 user의 id 기반 채팅방 목록 -->
+	</ul>
 </body>
 </html>
