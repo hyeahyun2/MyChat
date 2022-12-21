@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>채팅방 목록</title>
 <link rel="stylesheet" href="./css/chatMain.css">
-<script src="./js/chatMain.js" defer></script>
+<script src="./js/chatMain.js?v=<%=System.currentTimeMillis()%>" defer></script>
 </head>
 <body>
 	<span class="getInfo userID"><%= userID %></span>

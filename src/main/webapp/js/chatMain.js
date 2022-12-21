@@ -16,14 +16,13 @@ function chatIDListFunction(){
 			let result = parsed.result;	
 			for(let i=0; i<result.length; i++){
 				console.log(result[i].chatUserID);
-				if(result[i].chatUserID == userID) continue; // userID인 경우 제외
 				addIDList(result[i].chatUserID);
 			}
 			// chatID값 가져오기
 			lastChatID = Number(parsed.last);
 		}
 	}
-	xhr.send("userID=" + userID); // header에 포함하고자 하는 key와 값
+	xhr.send();
 }
 
 function addIDList(chatUserID){

@@ -1,6 +1,6 @@
 const xhr = new XMLHttpRequest();
 let fromID = document.querySelector('.userID').innerText;
-let toID = document.querySelector('.toID').innerText;
+let toID = document.querySelector('.header').innerText;
 console.log(document.querySelector('.userID').innerText);
 
 // 채팅 내역 db로 보내기
@@ -47,7 +47,6 @@ function chatListFunction(type){
 			let parsed = JSON.parse(data); // json형태로 파싱
 			let result = parsed.result;	
 			for(let i=0; i<result.length; i++){
-				console.log(result[i][0].value, result[i][2].value, result[i][3].value);
 				addChat(result[i][0].value, result[i][2].value, result[i][3].value);
 			}
 			// chatID값 가져오기

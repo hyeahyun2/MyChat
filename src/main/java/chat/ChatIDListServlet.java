@@ -31,6 +31,7 @@ public class ChatIDListServlet extends HttpServlet {
 		}
 	}
 	
+	// 채팅 내역 있는 아이디 목록 json형태로 얻기
 	public String getChatIDList(String userID) {
 		StringBuffer result = new StringBuffer("");
 		// json형태로
@@ -39,6 +40,7 @@ public class ChatIDListServlet extends HttpServlet {
 		ArrayList<String> chatIDList = chatDAO.getChatIDList(userID);
 		if(chatIDList.size() == 0) return "";
 		for(int i=0; i<chatIDList.size(); i++) {
+			if(chatIDList.get(i).equals(userID)) continue; // 로그인한 아이디인 경우 제외
 			result.append("{\"chatUserID\": \"" + chatIDList.get(i) + "\"}");
 			if(i != chatIDList.size() - 1) result.append(",");
 		}
